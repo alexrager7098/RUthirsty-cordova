@@ -1,0 +1,63 @@
+name: Build iOS IPA (Complete)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install -g cordova
+          npm install
+
+      - name: Add iOS platform
+        run: cordova platform add ios@latest
+
+      - name: Build iOS project
+        run: |
+          cordova build ios --device --release
+          echo "Build completed"
+
+      - name: Display build info
+        run: |
+          echo "iOS Build Status: ✅ Success"
+          ls -la platforms/ios/
+          echo ""
+          echo "Xcode workspace: platforms/ios/RUthirsty.xcworkspace"
+
+      - name: Create build summary
+        run: |
+          echo "# 🎉 iOS 构建完成" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 项目信息" >> $GITHUB_STEP_SUMMARY
+          echo "- 应用名称: RUthirsty" >> $GITHUB_STEP_SUMMARY
+          echo "- Bundle ID: com.ruthirsty.watertracker" >> $GITHUB_STEP_SUMMARY
+          echo "- 版本: 1.0.0" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📥 获取 IPA 文件" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 方法 1: 使用 AltStore (推荐 - 免费)" >> $GITHUB_STEP_SUMMARY
+          echo "1. 下载 AltStore: https://altstore.io/" >> $GITHUB_STEP_SUMMARY
+          echo "2. 在 Mac 上安装 AltServer" >> $GITHUB_STEP_SUMMARY
+          echo "3. 使用 AltStore 安装 IPA" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 方法 2: 使用 Sideloadly" >> $GITHUB_STEP_SUMMARY
+          echo "1. 下载 Sideloadly: https://sideloadly.io/" >> $GITHUB_STEP_SUMMARY
+          echo "2. 连接 iPhone 到电脑" >> $GITHUB_STEP_SUMMARY
+          echo "3. 用您的 Apple ID 签名" >> $GITHUB_STEP_SUMMARY
+          echo "4. 安装 IPA 到设备" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 方法 3: TestFlight" >> $GITHUB_STEP_SUMMARY
+          echo "需要 Apple Developer 账号 ($99/年)" >> $GITHUB_STEP_SUMMARY
