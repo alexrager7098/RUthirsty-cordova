@@ -41,6 +41,7 @@
         <allow-intent href="market:*" />
         <preference name="Orientation" value="portrait" />
         <preference name="minSdkVersion" value="21" />
+        <preference name="android-targetSdkVersion" value="34" />
     </platform>
 
     <!-- 通用首选项 -->
