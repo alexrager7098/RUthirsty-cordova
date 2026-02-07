@@ -1,0 +1,71 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type'
+        required: true
+        default: 'ad-hoc'
+        type: choice
+        options:
+          - ad-hoc
+          - development
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Add iOS platform
+        run: cordova platform add ios@latest
+
+      - name: Build iOS project
+        run: cordova build ios --device --release
+
+      - name: Configure Xcode for automatic signing
+        run: |
+          cd platforms/ios
+          # 自动签名配置将在后续步骤处理
+          echo "Xcode project prepared"
+
+      - name: Archive and Export IPA (Manual - requires certificates)
+        run: |
+          echo "⚠️ 注意：此步骤需要配置 Apple 签名证书"
+          echo "请查看构建文档了解如何配置"
+          ls -la platforms/ios/
+          echo "项目已构建，请在 Mac 上使用 Xcode 完成最终打包"
+
+      - name: Upload iOS build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-xcode-project
+          path: |
+            platforms/ios/*.xcworkspace
+            platforms/ios/*.xcodeproj
+          retention-days: 7
+
+      - name: Build summary
+        run: |
+          echo "## iOS 构建完成 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ iOS 项目已构建" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 下一步操作：" >> $GITHUB_STEP_SUMMARY
+          echo "1. 下载构建产物" >> $GITHUB_STEP_SUMMARY
+          echo "2. 在 Mac 上用 Xcode 打开项目" >> $GITHUB_STEP_SUMMARY
+          echo "3. 配置签名并导出 IPA" >> $GITHUB_STEP_SUMMARY

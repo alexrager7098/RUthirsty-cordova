@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 签名方法：ad-hoc（测试）、development（开发）、app-store（上架） -->
+    <key>method</key>
+    <string>ad-hoc</string>
+
+    <!-- 您的 Apple Team ID（在 Xcode → Preferences → Accounts 中查看） -->
+    <key>teamID</key>
+    <string>YOUR_TEAM_ID_HERE</string>
+
+    <!-- 是否编译 Bitcode（iOS 14+ 不需要） -->
+    <key>compileBitcode</key>
+    <false/>
+
+    <!-- 是否上传符号文件 -->
+    <key>uploadSymbols</key>
+    <false/>
+
+    <!-- 自动管理签名（推荐） -->
+    <key>signingStyle</key>
+    <string>automatic</string>
+
+    <!-- Bundle ID（与 config.xml 中的 id 一致） -->
+    <key>bundleID</key>
+    <string>com.ruthirsty.watertracker</string>
+</dict>
+</plist>

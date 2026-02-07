@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ruthirsty.watertracker" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>RUthirsty</name>
+    <description>
+        喝水打卡应用 - 帮助你记录每日喝水次数
+    </description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        RUthirsty Team
+    </author>
+    <content src="index.html" />
+
+    <!-- 权限配置 -->
+    <access origin="*" />
+
+    <!-- 允许内联脚本和样式 -->
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!-- iOS 配置 -->
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <preference name="Orientation" value="all" />
+        <preference name="target-device" value="universal" />
+        <preference name="deployment-target" value="12.0" />
+        <preference name="SwiftVersion" value="5.0" />
+        <preference name="BackupWebStorage" value="local" />
+        <!-- 启用安全区域支持 -->
+        <preference name="StatusBarOverlaysWebView" value="true" />
+        <preference name="StatusBarStyle" value="default" />
+        <!-- 禁止缩放 -->
+        <preference name="EnableViewportScale" value="false" />
+    </platform>
+
+    <!-- Android 配置 -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="Orientation" value="portrait" />
+        <preference name="minSdkVersion" value="21" />
+    </platform>
+
+    <!-- 通用首选项 -->
+    <preference name="Fullscreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="21" />
+</widget>

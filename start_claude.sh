@@ -3,8 +3,8 @@ set -e
 #!/bin/bash
 
 # 设置环境变量
-export ANTHROPIC_AUTH_TOKEN=sk-W2dlfofLnJfkoe26haOiYQmzqFD0DQPBPmfZao8YOBuo0d92
-export ANTHROPIC_BASE_URL=https://apiHK.Ai
+export ANTHROPIC_AUTH_TOKEN=98687fb6c7c44288963fbf8efdfbfef0.zLA1VHd8NxTYued3
+export ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic
 # 备选API线路（去掉下面两行注释生效）
 # export ANTHROPIC_AUTH_TOKEN=sk-BnACKGNS5fruSd9Mmm2cH4MuLXGR27sB0md9KsYN6fvR4CYi
 # export ANTHROPIC_BASE_URL=https://xinghuapi.com
